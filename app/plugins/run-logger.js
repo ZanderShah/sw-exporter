@@ -59,7 +59,7 @@ module.exports = {
       return `Power Stone x${crate.rune_upgrade_stone.item_quantity}`;
     }
     if (crate.unit_info) {
-      return `${gMapping.getMonsterName(crate.unit_info.unit_master_id)} ${crate.unit_info.class}`;
+      return `${gMapping.getMonsterNameZander(crate.unit_info.unit_master_id)} ${crate.unit_info.class}`;
     }
     if (crate.material) {
       const id = crate.material.item_master_id.toString();
@@ -71,7 +71,7 @@ module.exports = {
       return `${gMapping.craftMaterial[crate.craft_stuff.item_master_id]} x${crate.craft_stuff.item_quantity}`;
     }
     if (crate.summon_pieces) {
-      return `Summoning Piece ${gMapping.getMonsterName(crate.summon_pieces.item_master_id)} x${crate.summon_pieces.item_quantity}`;
+      return `Summoning Piece ${gMapping.getMonsterNameZander(crate.summon_pieces.item_master_id)} x${crate.summon_pieces.item_quantity}`;
     }
 
     return 'Unknown Drop';
@@ -184,7 +184,7 @@ module.exports = {
 
     if (resp.unit_list && resp.unit_list.length > 0) {
       resp.unit_list.forEach((unit, i) => {
-        entry[`team${i + 1}`] = gMapping.getMonsterName(unit.unit_master_id);
+        entry[`team${i + 1}`] = gMapping.getMonsterNameZander(unit.unit_master_id);
       });
     }
 
@@ -229,7 +229,7 @@ module.exports = {
         entry = this.getItemRift(reward.crate.rune, entry);
       }
       if (reward.crate.unit_info && reward.crate.unit_info.unit_master_id > 0) {
-        entry.drop = `${gMapping.getMonsterName(reward.crate.unit_info.unit_master_id)} ${reward.crate.unit_info.class}`;
+        entry.drop = `${gMapping.getMonsterNameZander(reward.crate.unit_info.unit_master_id)} ${reward.crate.unit_info.class}`;
       }
       if (!entry.drop && resp.reward.crate) {
         entry.drop = this.getItem(reward.crate);
@@ -241,7 +241,7 @@ module.exports = {
 
     if (resp.unit_list && resp.unit_list.length > 0) {
       resp.unit_list.forEach((unit, i) => {
-        entry[`team${i + 1}`] = gMapping.getMonsterName(unit.unit_master_id);
+        entry[`team${i + 1}`] = gMapping.getMonsterNameZander(unit.unit_master_id);
       });
     }
     const headers = ['date', 'dungeon', 'result', 'time', 'item1', 'item2', 'item3', 'drop', 'grade', 'sell_value',
@@ -278,7 +278,7 @@ module.exports = {
             entry.drop = `Summoning Stones x${item.item_quantity}`;
           }
           if (item.info && item.info.unit_master_id > 0) {
-            entry.drop = `${gMapping.getMonsterName(item.info.unit_master_id)} ${item.class}`;
+            entry.drop = `${gMapping.getMonsterNameZander(item.info.unit_master_id)} ${item.class}`;
           }
           if ((item.info && item.info.craft_type_id) || item.type === 8) {
             entry = this.getItemRift(item, entry);
@@ -289,7 +289,7 @@ module.exports = {
 
     if (resp.unit_list && resp.unit_list.length > 0) {
       resp.unit_list.forEach((unit, i) => {
-        entry[`team${i + 1}`] = gMapping.getMonsterName(unit.unit_master_id);
+        entry[`team${i + 1}`] = gMapping.getMonsterNameZander(unit.unit_master_id);
       });
     }
     const headers = ['date', 'dungeon', 'result', 'time', 'item1', 'item2', 'item3', 'drop', 'grade', 'sell_value',

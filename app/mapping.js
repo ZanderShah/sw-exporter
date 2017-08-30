@@ -9,11 +9,11 @@ module.exports = {
     },
     names: {
       101: 'Fairy',
-      10111: 'Elucia',
-      10112: 'Iselia',
-      10113: 'Aeilene',
-      10114: 'Neal',
-      10115: 'Sorin',
+      10111: 'Elucia', // fairy_water_awakened
+      10112: 'Iselia', // fairy_fire_awakened
+      10113: 'Aeilene', // fairy_wind_awakened
+      10114: 'Neal', // fairy_light_awakened
+      10115: 'Sorin', // fairy_dark_awakened
 
       102: 'Imp',
       10211: 'Fynn',
@@ -1260,7 +1260,25 @@ module.exports = {
     6001: 'Condensed Magic Crystal',
     7001: 'Pure Magic Crystal'
   },
+  getMonsterNameZander(id) {
+    if (id) {
+      id = id.toString();
+      let family = Number(id.substr(0, 3));
 
+      if (this.monster.names[family]) {
+        let attribute = Number(id.slice(-1));
+
+        let ret = `${this.monster.names[family]}_${this.monster.attributes[attribute]}`;
+        if (id.length === 5) {
+          ret += '_awakened';
+        }
+        // Let's hope I never decide to run homie or this will probably die
+        return ret.toLowerCase().replace(/\s+/g, '_');
+      }
+      return 'Unknown Monster';
+    }
+    return false;
+  },
   getMonsterName(id) {
     if (id) {
       if (this.monster.names[id]) {
